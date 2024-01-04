@@ -1,0 +1,74 @@
+#!bin/bash
+
+kadi=$(grep -i $1 /etc/passwd | cut -d: -f1)
+kid=$(grep -i $1 /etc/passwd | cut -d: -f 3)
+gid=$(grep -i $1 /etc/passwd | cut -d: -f 4)
+tkadi=$(grep -i $1 /etc/passwd | cut -d: -f 5)
+homedizini=$(grep -i $1 /etc/passwd | cut -d: -f 6)
+terminali=$(grep -i $1 /etc/passwd | cut -d: -f 7)
+
+algoritma=$(sudo grep -i $1 /etc/shadow | cut -d$ -f 2)
+salt=$(sudo grep -i $1 /etc/shadow | cut -d$ -f 4)
+hash=$(sudo grep dogan /etc/shadow | cut -d. -f 2)
+fark=$(sudo grep dogan /etc/shadow | cut -d: -f 3)
+degistir=$(sudo grep dogan /etc/shadow | cut -d: -f 4)
+zorunlu=$(sudo grep dogan /etc/shadow | cut -d: -f 5)
+hatirlat=$(sudo grep dogan /etc/shadow | cut -d: -f 6)
+devredisi=$(sudo grep dogan /etc/shadow | cut -d: -f 7)
+kullanilmadigi=$(sudo grep dogan /etc/shadow | cut -d: -f 8)
+echo
+echo " 		PASSWD"
+echo
+echo "Kullanıcı Adı: " $kadi
+echo "--------------------------------"	
+echo "İkinci Sütun Parola Bilgisi İçerir. /etc/shadow dosyasına bakın."
+echo "--------------------------------"
+echo "Kullanıcı İD: " $kid
+echo "--------------------------------"
+echo "Grup İD: " $gid
+echo "--------------------------------"
+echo "Tam Kullanıcı Adı:" $tkadi
+echo "--------------------------------"
+echo "Home Dizini: " $homedizini
+echo "--------------------------------"
+echo "Kullandığı Terminal: " $terminali
+echo "--------------------------------"
+echo
+echo "		SHADOW"
+echo
+echo "Kullanıcı Adı: " $kadi  
+echo "--------------------------------"
+case $algoritma in
+	"6")
+        echo "Algoritma: SHA"
+        ;;
+	"1")
+        echo "Algoritma: MD5"
+        ;;
+	"2a")
+        echo "Algoritma: BlowFish"
+        ;;
+	"argon2id")
+        echo "Algoritma: Argon2"
+        ;;
+	"y")
+        echo "Algoritma: yescrypt"
+        ;;
+esac
+echo "--------------------------------"
+echo "Tuzlama Değeri: " $salt
+echo "--------------------------------"
+echo "Hash: " $hash
+echo "--------------------------------"
+echo "1 Ocak 1970 Gününe Uzaklık: " $fark
+echo "--------------------------------"
+echo "Parolanın Kaç Gün Sonra Değiştirilmesi Gerektiği: " $degistir
+echo "--------------------------------"
+echo "Parolanın zorunlu olarak değişmesi için geçmesi gereken gün: " $zorunlu
+echo "--------------------------------"
+echo "Parola değiştirmeyi hatırlatacağı gün: " $hatirlat
+echo "--------------------------------"
+echo "Parolanın süresi dolunca hesabın devre dışı kalacağı gün: " $devredisi
+echo "--------------------------------"
+echo "Hesabın ne zamandan beri kullanılamadığı: " $kullanilmadigi
+echo "--------------------------------"
