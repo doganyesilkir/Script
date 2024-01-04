@@ -9,13 +9,13 @@ terminali=$(grep -i $1 /etc/passwd | cut -d: -f 7)
 
 algoritma=$(sudo grep -i $1 /etc/shadow | cut -d$ -f 2)
 salt=$(sudo grep -i $1 /etc/shadow | cut -d$ -f 4)
-hash=$(sudo grep dogan /etc/shadow | cut -d. -f 2)
-fark=$(sudo grep dogan /etc/shadow | cut -d: -f 3)
-degistir=$(sudo grep dogan /etc/shadow | cut -d: -f 4)
-zorunlu=$(sudo grep dogan /etc/shadow | cut -d: -f 5)
-hatirlat=$(sudo grep dogan /etc/shadow | cut -d: -f 6)
-devredisi=$(sudo grep dogan /etc/shadow | cut -d: -f 7)
-kullanilmadigi=$(sudo grep dogan /etc/shadow | cut -d: -f 8)
+hash=$(sudo grep -i $1 /etc/shadow | cut -d. -f 2)
+fark=$(sudo grep -i $1 /etc/shadow | cut -d: -f 3)
+degistir=$(sudo grep -i $1 /etc/shadow | cut -d: -f 4)
+zorunlu=$(sudo grep -i $1 /etc/shadow | cut -d: -f 5)
+hatirlat=$(sudo grep -i $1 /etc/shadow | cut -d: -f 6)
+devredisi=$(sudo grep -i $1 /etc/shadow | cut -d: -f 7)
+kullanilmadigi=$(sudo grep -i $1 /etc/shadow | cut -d: -f 8)
 echo
 echo " 		PASSWD"
 echo
